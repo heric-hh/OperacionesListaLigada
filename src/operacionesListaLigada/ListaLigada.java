@@ -49,9 +49,10 @@ public class ListaLigada {
     public void recorrer() {
         Nodo aux = inicio; // aux es de tipo Nodo porque es una referencia y debe ser igual a inicio porque apunta al 1er elemento
         while ( aux != null ) { // Si existe un nodo, imprimelo
-            System.out.println(aux.dato);
+            System.out.print( aux.dato + " - ");
             aux = aux.sig; //Avanza al siguiente nodo
         }
+        System.out.println();
     }
     
     // Verificar si la lista está vacia
@@ -92,6 +93,18 @@ public class ListaLigada {
         return null;
     }
     
+    public boolean buscarElemento( int elemento ) {
+        Nodo aux = inicio;
+        while ( aux != null ) {
+            if ( aux.dato == elemento )
+                return true;
+            else {
+                aux = aux.sig;
+            }            
+        }
+        return false;
+    }
+    
     // Método para eliminar un dato especifico
     public boolean eliminarEspecifico ( int elemento ) {
         Nodo[] res = buscarNodo( elemento );
@@ -102,8 +115,8 @@ public class ListaLigada {
                 eliminarAlInicio();
             } else {
                 res[0].sig = res[1].sig; // El predecesor apunta al siguiente nodo del que hay en medio.
-                tam--;
             }
+            tam--;
             return true;
         }
     }
@@ -113,8 +126,9 @@ public class ListaLigada {
             insertarAlInicio( elemento );
         } else {
             fin.sig = new Nodo( elemento );
+            fin = fin.sig;
+            tam++;
         }
-    
     }
     
     
