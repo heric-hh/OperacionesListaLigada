@@ -24,6 +24,7 @@ public class Main {
         // Insertar al inicio de la lista
         ls.insertarAlInicio(93);
         ls.insertarAlInicio(23);
+        ls.insertarAlInicio(45);
         
         // Obtener tamaño de la lista
         System.out.println(ls.getTamaño());
@@ -38,6 +39,19 @@ public class Main {
         ls.recorrer();
         
         // Buscar un elemento
+        System.out.println("Que elemento deseas eliminar?");
+        int elem = Integer.parseInt(bf.readLine());
         
+        if ( !ls.eliminarEspecifico(elem) ) {
+            System.out.println("No existe");
+        } else 
+            System.out.println("Eliminado");
+        
+        ls.recorrer();
+        
+        // Insertar al final
+        ls.insertarAlFinal(20);
+        
+        ls.recorrer();
     }
 }

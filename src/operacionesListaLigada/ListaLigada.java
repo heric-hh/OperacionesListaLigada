@@ -7,6 +7,7 @@ package operacionesListaLigada;
 public class ListaLigada {
     private Nodo inicio; // Referencia de tipo Nodo. Apunta al primer elemento
     private int tam; // Indica cuantos nodos contiene la lista.
+    private Nodo fin;
     
     // Constructor de la clase
     
@@ -16,6 +17,7 @@ public class ListaLigada {
     */
     public ListaLigada() {
         this.inicio = null;
+        this.fin = null;
         tam = 0;
     }
     
@@ -34,6 +36,9 @@ public class ListaLigada {
         donde se recibe un dato y el enlace al nodo siguiente. En este caso se apunta hacia el inicio de la lista.
         */
         inicio = new Nodo( elemento, inicio );
+        if ( tam == 0 ) {
+            fin = inicio;
+        }
         tam++;
     }
     
@@ -60,6 +65,8 @@ public class ListaLigada {
             int dato = inicio.dato; // Almacenamos el dato del nodo para retornarlo
             inicio = inicio.sig; // Con esto estamos avanzando a inicio al nodo siguiente. Asi el nodo inicial queda sin referenciar
             tam--;
+            if ( tam == 0 )
+                fin = null;
             return dato;
         }
         return 0;
@@ -67,17 +74,52 @@ public class ListaLigada {
     
     // Método para buscar un elemento en la lista.
     
-    private Nodo buscarNodo( int elemento ) {
+    private Nodo[] buscarNodo( int elemento ) {
+        Nodo paux = null; // paux sirve como auxiliar del nodo predecesor
         // Se necesita un auxiliar como referencia para ir avanzando entre los nodos y realizar la comparacion
         Nodo aux = inicio;
         while ( aux != null ) { // Recorre mientras la lista no este vacia o no haya llegado al final
-            if ( aux.dato == elemento )
-                return aux;
-            else
-                aux = aux.sig; // Avanza al siguiente nodo
+            if ( aux.dato == elemento ) {
+                Nodo[] datos = new Nodo[2];
+                datos[0] = paux;
+                datos[1] = aux;
+                return datos;
+            } else {
+                paux = aux;
+                aux = aux.sig;
+            }
         }
-        return aux;
+        return null;
     }
+    
+    // Método para eliminar un dato especifico
+    public boolean eliminarEspecifico ( int elemento ) {
+        Nodo[] res = buscarNodo( elemento );
+        if ( res == null )
+            return false;
+        else {
+            if ( res[0] == null ) { //Verificamos si hay un predecesor de un nodo
+                eliminarAlInicio();
+            } else {
+                res[0].sig = res[1].sig; // El predecesor apunta al siguiente nodo del que hay en medio.
+                tam--;
+            }
+            return true;
+        }
+    }
+    
+    public void insertarAlFinal( int elemento )  {
+        if ( estaVacia() ) {
+            insertarAlInicio( elemento );
+        } else {
+            fin.sig = new Nodo( elemento );
+        }
+    
+    }
+    
+    
+    
+    
     
     // La clase Nodo funciona como una clase interna de la clase ListaLigada
     
@@ -99,10 +141,5 @@ public class ListaLigada {
         this.sig = sig;
     }
     
-    
-    
-    
-}
-    
-    
+    }
 }
