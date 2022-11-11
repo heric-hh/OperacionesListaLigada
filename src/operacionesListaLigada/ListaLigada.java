@@ -22,11 +22,31 @@ public class ListaLigada {
     // Métodos de la clase
     
     // Regresar el tamaño de la lista
+    
     public int getTamaño() { return this.tam; } 
     
-    
+  
+    // Insertar un elemento al inicio de la lista
+   
     public void insertarAlInicio( int elemento ) {
-        inicio = new Nodo( elemento, inicio ); // Al crear este objeto, se apunta al inicio de la lista  
+        /* 
+        Al crear este objeto, hacemos uso del segundo constructor de la clase Nodo
+        donde se recibe un dato y el enlace al nodo siguiente. En este caso se apunta hacia el inicio de la lista.
+        */
+        inicio = new Nodo( elemento, inicio );
         tam++;
+    }
+    
+    // Recorrer la lista
+    /*
+        Para recorrer la lista es necesario crear una referencia auxiliar para que pueda moverse entre los nodos.
+    */
+    public void recorrer() {
+        String cad = "";
+        Nodo aux = inicio;// aux es de tipo Nodo porque es una referencia y debe ser igual a inicio porque apunta al 1er elemento
+        while ( aux != null ) { // Si existe un nodo, imprimelo
+            System.out.println(aux.dato);
+            aux = aux.sig; //Avanza al siguiente nodo
+        }
     }
 }
