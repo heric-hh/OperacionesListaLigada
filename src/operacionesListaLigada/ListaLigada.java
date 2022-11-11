@@ -79,5 +79,30 @@ public class ListaLigada {
         return aux;
     }
     
+    // La clase Nodo funciona como una clase interna de la clase ListaLigada
+    
+    private class Nodo {
+    int dato;
+    Nodo sig;
+
+    // Constructor de la clase
+
+    
+    public Nodo( int dato ) {
+        this.dato = dato;
+        this.sig = null;
+    }
+    
+    // Para este constructor, se necesita recibir un dato y el nodo siguiente
+    public Nodo ( int dato, Nodo sig ) {
+        this.dato = dato;
+        this.sig = sig;
+    }
+    
+    
+    
+    
+}
+    
     
 }
