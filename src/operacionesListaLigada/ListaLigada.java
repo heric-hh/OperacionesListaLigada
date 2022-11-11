@@ -42,7 +42,6 @@ public class ListaLigada {
         Para recorrer la lista es necesario crear una referencia auxiliar para que pueda moverse entre los nodos.
     */
     public void recorrer() {
-        String cad = "";
         Nodo aux = inicio; // aux es de tipo Nodo porque es una referencia y debe ser igual a inicio porque apunta al 1er elemento
         while ( aux != null ) { // Si existe un nodo, imprimelo
             System.out.println(aux.dato);
@@ -64,6 +63,20 @@ public class ListaLigada {
             return dato;
         }
         return 0;
+    }
+    
+    // Método para buscar un elemento en la lista.
+    
+    private Nodo buscarNodo( int elemento ) {
+        // Se necesita un auxiliar como referencia para ir avanzando entre los nodos y realizar la comparacion
+        Nodo aux = inicio;
+        while ( aux != null ) { // Recorre mientras la lista no este vacia o no haya llegado al final
+            if ( aux.dato == elemento )
+                return aux;
+            else
+                aux = aux.sig; // Avanza al siguiente nodo
+        }
+        return aux;
     }
     
     

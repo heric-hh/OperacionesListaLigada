@@ -1,11 +1,24 @@
 package operacionesListaLigada;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  *
  * @author hheri
  */
 public class Main {
-    public static void main(String[] args) {
+    public static BufferedReader bf = new BufferedReader ( new InputStreamReader(System.in) );
+
+    public static int pedirDato() throws IOException {
+        System.out.println("¿Qué numero quieres buscar? ");
+        int elemento = Integer.parseInt( bf.readLine() );
+        return elemento;
+    }
+    
+    public static void main(String[] args) throws IOException {
+
         ListaLigada ls = new ListaLigada();
         
         // Insertar al inicio de la lista
@@ -23,5 +36,8 @@ public class Main {
         
         // Volver a recorrer para verificar la eliminacion
         ls.recorrer();
+        
+        // Buscar un elemento
+        
     }
 }
