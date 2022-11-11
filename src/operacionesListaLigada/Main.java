@@ -17,5 +17,11 @@ public class Main {
         
         // Recorrer y mostrar la lista
         ls.recorrer();
+        
+        // Eliminar al inicio
+        System.out.println("Elemento eliminado: " + ls.eliminarAlInicio());
+        
+        // Volver a recorrer para verificar la eliminacion
+        ls.recorrer();
     }
 }

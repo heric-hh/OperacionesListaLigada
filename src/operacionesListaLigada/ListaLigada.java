@@ -19,7 +19,7 @@ public class ListaLigada {
         tam = 0;
     }
     
-    // Métodos de la clase
+    /* === METODOS DE LA CLASE === */
     
     // Regresar el tamaño de la lista
     
@@ -37,16 +37,34 @@ public class ListaLigada {
         tam++;
     }
     
-    // Recorrer la lista
     /*
+        Recorrer la lista
         Para recorrer la lista es necesario crear una referencia auxiliar para que pueda moverse entre los nodos.
     */
     public void recorrer() {
         String cad = "";
-        Nodo aux = inicio;// aux es de tipo Nodo porque es una referencia y debe ser igual a inicio porque apunta al 1er elemento
+        Nodo aux = inicio; // aux es de tipo Nodo porque es una referencia y debe ser igual a inicio porque apunta al 1er elemento
         while ( aux != null ) { // Si existe un nodo, imprimelo
             System.out.println(aux.dato);
             aux = aux.sig; //Avanza al siguiente nodo
         }
     }
+    
+    // Verificar si la lista está vacia
+    
+    public boolean estaVacia() { return ( inicio == null ); }
+    
+    // Metodo para eliminar un nodo al inicio de la lista
+    
+    public int eliminarAlInicio() {
+        if ( !estaVacia() ) {
+            int dato = inicio.dato; // Almacenamos el dato del nodo para retornarlo
+            inicio = inicio.sig; // Con esto estamos avanzando a inicio al nodo siguiente. Asi el nodo inicial queda sin referenciar
+            tam--;
+            return dato;
+        }
+        return 0;
+    }
+    
+    
 }
